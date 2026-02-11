@@ -1,0 +1,32 @@
+line-length = 120     
+indent-width = 4   # spacje wcięcia       
+fix = true # jak ruff znajdzie bledy to sam to poprawi               
+target-version = "py314"   
+
+[lint]
+select = [
+  "E","W","F","UP","B","C4","I","SIM",
+  "D","N","FA","ICN","RET","ISC",
+  "TID","TC","PTH","TD","NPY","PT","T20","S", "ANN", "TCH",
+] # numery błędów
+ignore = ["E501","W191","E111","E114","E117","B008","C901", "D100", "D104"]  # lista zasad, które są ignorowane
+
+[lint.per-file-ignores]
+"__init__.py"  = ["F401"] # dla inita rezygnujemy z błędu F401
+"tests/*"      = ["S101","D101","D102"]
+"migrations/*" = ["E501"]
+
+[lint.isort] # sortowanie importow python, biblioteki, ktore mamy zainstalowane, local-folder importy wzgledne
+section-order     = ["future","standard-library","third-party","first-party","local-folder"]
+
+[lint.pydocstyle] # ustawienia do dokumentacji
+convention = "google"
+
+[lint.pyupgrade] # zeby nie usuwal adnotacji na runtime
+keep-runtime-typing = true
+
+# Sekcja formatera (alias [tool.ruff.format])
+[format]
+quote-style  = "double" 
+indent-style = "space"
+line-ending  = "lf" # oznaczenie konca linii \n na linuxie, \r\n\ Windows uzywa crlf
